@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 142.1 70.6% 45.3%; /* Hacker Green */
+    --primary-foreground: 0 0% 98%; /* Adjusted for better contrast on green */
+
+    --secondary: 0 0% 10%; /* Darker secondary for sidebar */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%; /* Vibrant Red */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 142.1 70.6% 45.3%; /* Hacker Green for focus rings */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%; /* Deep Dark Blue */
+    --foreground: 210 20% 98%; /* Light Gray/White */
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+    --primary: 142.1 70.6% 45.3%; /* Hacker Green */
+    --primary-foreground: 210 20% 98%; /* Ensuring high contrast text on primary */
+    --secondary: 220 13% 10%; /* Darker shade for sidebar */
+    --secondary-foreground: 210 20% 98%;
+    --muted: 215 20.2% 25.1%; /* Slightly lighter muted for better visibility */
+    --muted-foreground: 215.4 16.3% 56.9%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 20% 98%;
+    --destructive: 0 62.8% 30.6%; /* Red for errors */
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 217.2 32.6% 17.5%; /* Dark border */
+    --input: 217.2 32.6% 22.5%; /* Slightly lighter input background */
+    --ring: 142.1 70.6% 45.3%; /* Hacker Green for focus rings */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom scrollbar for a more modern look */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--secondary) / 0.5);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.6);
+  border-radius: 10px;
+  border: 2px solid hsl(var(--secondary) / 0.5);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* Glassmorphism effect for cards/modals if needed */
+.glassmorphic {
+  background: rgba(20, 20, 30, 0.6); /* Darker, slightly transparent background */
+  backdrop-filter: blur(10px) saturate(180%);
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.125); /* Subtle border */
+  border-radius: var(--radius);
+}
+
+/* Neumorphic-inspired subtle shadows for inputs/buttons */
+.neumorphic-shadow {
+  box-shadow: 
+    3px 3px 6px hsl(var(--secondary) / 0.5), 
+    -3px -3px 6px hsl(var(--background) / 0.7);
+}
+.neumorphic-shadow-inset {
+  box-shadow: 
+    inset 3px 3px 6px hsl(var(--secondary) / 0.5),
+    inset -3px -3px 6px hsl(var(--background) / 0.7);
+}
+
+/* Code block styling */
+pre {
+  background-color: hsl(var(--secondary) / 0.7) !important; /* Ensure this overrides other pre styles if any */
+  color: hsl(var(--foreground)) !important;
+  padding: 0.75rem 1rem !important; /* p-3 pr-10 equivalent */
+  border-radius: var(--radius) !important;
+  overflow-x: auto !important;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace !important;
+  font-size: 0.875em !important; /* text-sm */
+  border: 1px solid hsl(var(--border) / 0.7) !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important; /* shadow-inner */
+  max-width: 100% !important; /* Ensure it doesn't overflow its container */
+}
+
+pre code {
+  background-color: transparent !important; 
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-family: inherit !important; /* Inherit from pre */
+  font-size: inherit !important; /* Inherit from pre */
+  color: inherit !important; /* Inherit from pre */
+  white-space: pre !important; /* Preserve whitespace and allow horizontal scroll */
+}
+
+/* General inline code, not inside pre */
+code:not(pre > code) {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  background-color: hsl(var(--muted) / 0.5); 
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  color: hsl(var(--primary));
+}
+
+
+/* Syntax highlighting (basic example, can be expanded with a library) */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: hsl(var(--muted-foreground));
+}
+
+.token.punctuation {
+  color: hsl(var(--foreground) / 0.7);
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #80CBC4; /* Teal */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+  color: #C3E88D; /* Light Green */
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #89DDFF; /* Light Blue */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #F07178; /* Salmon Red */
+}
+
+.token.function,
+.token.class-name {
+  color: #FFCB6B; /* Yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #F78C6C; /* Orange */
+}
